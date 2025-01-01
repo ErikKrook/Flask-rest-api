@@ -5,7 +5,8 @@ This is a personal project aimed at learning how to use Flask to build REST APIs
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate # for activation
+deactivate # for deactivation
 ```
 
 # Install libraries
