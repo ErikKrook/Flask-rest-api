@@ -5,7 +5,7 @@ Personal project to help me learn flask and how to build a rest api, i am using 
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows, use venv\Scripts\activate
+venv\Scripts\activate
 ```
 
 # Install libraries
