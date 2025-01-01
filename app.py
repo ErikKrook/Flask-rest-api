@@ -18,6 +18,9 @@ def task(task_id):
         return jsonify({"message": "Task not found"}), 404
     
     if request.method == 'POST':
+        data = request.json
+        if not data or "description" not in data:
+            return jsonify({"message":"Missing 'description' key in request body"}), 400
         if task_id in tasks:
             return jsonify({"message":"Task already exists"}), 400
         tasks[task_id] = request.json.get("description", "")
