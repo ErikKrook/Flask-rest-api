@@ -16,6 +16,12 @@ def task(task_id):
         if task_id in tasks:
             return jsonify({task_id: tasks[task_id]})
         return jsonify({"message": "Task not found"}), 404
+    
+    if request.method == 'POST':
+        if task_id in tasks:
+            return jsonify({"message":"Task already exists"}), 400
+        tasks[task_id] = request.json.get("description", "")
+        return jsonify({task_id: tasks[task_id]}), 201
 
 if __name__ == '__main__':
     app.run(debug=True)
