@@ -14,3 +14,9 @@ deactivate # for deactivation
 ```bash
 pip install flask flask-restful
 ```
+
+# How to run Unittest
+
+```bash
+python -m unittest test_app.py
+```
