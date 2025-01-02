@@ -22,6 +22,11 @@ class TestFlaskApp(unittest.TestCase):
         response = self.app.put('/task/1', json={"description":"Test Task"})
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json, {"message":"Task not found"})
-         
+    
+    def test_delete_task_not_found(self):
+        response = self.app.delete('/task/1')
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json, {"message":"Task not found"})
+        
 if __name__ == '__main__':
     unittest.main()
