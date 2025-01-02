@@ -1,11 +1,12 @@
 # Flask-rest-api
-Personal project to help me learn flask and how to build a rest api, i am using postman to send request to my localhost
+This is a personal project aimed at learning how to use Flask to build REST APIs. I'm using Postman to send requests to a localhost for testing and debugging.
 
 # Create virutal envireonment and activate it 
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate # for activation
+deactivate # for deactivation
 ```
 
 # Install libraries
