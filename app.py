@@ -38,6 +38,13 @@ def task(task_id):
         return jsonify({"message":"Task updated successfully",
                         "task_id": task_id,
                         "description": tasks[task_id]}), 200
+    
+    if request.method == 'DELETE':
+        if task_id in tasks:
+            del tasks[task_id]
+            return jsonify({"message":"Task deleted succesfully"}), 200
+        return jsonify({"message":"Task not found"}), 404
+        
         
 
 if __name__ == '__main__':
