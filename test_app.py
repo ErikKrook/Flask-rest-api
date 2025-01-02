@@ -19,7 +19,7 @@ class TestFlaskApp(unittest.TestCase):
         self.assertEqual(response.json, {"10":"Test Task"})
 
     def test_put_task_not_found(self):
-        response = self.app.put('/task/10', json={"description":"Test Task"})
+        response = self.app.put('/task/1', json={"description":"Test Task"})
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json, {"message":"Task not found"})
          
