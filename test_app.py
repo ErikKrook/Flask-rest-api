@@ -47,11 +47,23 @@ class TestFlaskApp(unittest.TestCase):
         self.assertEqual(response.json, {"message":"Task updated successfully",
                                         "task_id": "7",
                                         "description": "Test Task Update"})
+        
+    def test_put_task_wrong_key(self):
+        self.app.post('/task/8', json={"description":"Test Task"})
+        response = self.app.put('/task/8', json={"desciption":"Test Task Updated"})
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json, {"message":"Missing 'description' key in request body"})  
     
     def test_delete_task_not_found(self):
-        response = self.app.delete('/task/5')
+        response = self.app.delete('/task/9')
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json, {"message":"Task not found"})
+
+    def test_delete_task(self):
+        self.app.post('/task/10', json={"description":"Test Task"})
+        response = self.app.delete('/task/10')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"message":"Task deleted succesfully"})
 
         
 if __name__ == '__main__':
