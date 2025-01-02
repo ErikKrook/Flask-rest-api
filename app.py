@@ -26,5 +26,19 @@ def task(task_id):
         tasks[task_id] = request.json.get("description", "")
         return jsonify({task_id: tasks[task_id]}), 201
 
+    if request.method == 'PUT':
+        if task_id not in tasks:
+            return jsonify({"message":"Task not found"}), 404
+        
+        data = request.json
+        if not data or "description" not in data:
+            return jsonify({"message":"Missing 'description' key in request body"}), 400
+        
+        tasks[task_id] = request.json.get("description", "")
+        return jsonify({"message":"Task updated successfully",
+                        "task_id": task_id,
+                        "description": tasks[task_id]}), 200
+        
+
 if __name__ == '__main__':
     app.run(debug=True)
