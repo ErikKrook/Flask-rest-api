@@ -1,7 +1,6 @@
 import json
-import os
 
-file_path = 'task.json'
+file_path = 'tasks.json'
 
 tasks = {
     "1":"Handla",
@@ -10,14 +9,12 @@ tasks = {
     "4":"Äta"
 }
 
-def json_file(dict):
+def json_file(file_path, dict):
 
-    json_object =  json.dumps(dict, indent=4)
-
-    with open('tasks.json', 'w') as outfile:
-        outfile.write(json_object)
+    with open(file_path, 'w') as outfile:
+        json.dump(dict, outfile)
 
     return print("Done")
 
 if __name__ == '__main__':
-    json_file(tasks)
+    json_file(file_path, tasks)
