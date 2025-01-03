@@ -5,8 +5,8 @@ file_path = 'tasks.json'
 tasks = {
     "1":"Handla",
     "2":"Diska",
-    "3":"Städa",
-    "4":"Äta"
+    "3":"Clean",
+    "4":"Eat"
 }
 
 def json_file(file_path, dict):
