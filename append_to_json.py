@@ -1,11 +1,23 @@
 import json
 
 # Function to append data to a JSON file
-def append_json(new_data, filename='tasks.json'):
+def update_json(new_data, update, filename='tasks.json'):
     with open(filename, 'r+') as file:
 
         # Load existing data
         file_data = json.load(file)
+
+        # Check if the file can be updated or appended to
+        if update == True:
+            for key in new_data:
+                if key not in file_data:
+                    print(f"Error key {key} not in use")
+                    return False
+        elif update == False:
+            for key in new_data:
+                if key in file_data:
+                    print(f"Error key {key} already in use")
+                    return False
 
         # Append the new data
         file_data.update(new_data)
@@ -16,13 +28,12 @@ def append_json(new_data, filename='tasks.json'):
         # Truncate file to avoid leftover characters
         file.truncate()
 
+    return True
+
 def write_json(new_data, file_name='tasks.json'):
 
     #Over write existing file
     with open(file_name, 'w') as outfile:
         json.dump(new_data, outfile)
 
-# Python object to be appended
-task = {"5": "Walk"}
-
-append_json(task)
+    return True
