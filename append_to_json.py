@@ -11,12 +11,12 @@ def update_json(new_data, update, filename='tasks.json'):
         if update == True:
             for key in new_data:
                 if key not in file_data:
-                    print(f"Error key {key} not in use")
+                    #print(f"Error key {key} not in use")
                     return False
         elif update == False:
             for key in new_data:
                 if key in file_data:
-                    print(f"Error key {key} already in use")
+                    #print(f"Error key {key} already in use")
                     return False
 
         # Append the new data
