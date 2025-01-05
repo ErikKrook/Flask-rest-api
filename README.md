@@ -1,6 +1,8 @@
 # Flask-rest-api
 This is a personal project aimed at learning how to use Flask to build REST APIs. I'm using Postman to send requests to a localhost for testing and debugging.
 
+The main program in app.py that imports functions from json_handling.py 
+
 # Create virutal envireonment and activate it 
 
 ```bash
