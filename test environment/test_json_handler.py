@@ -1,6 +1,7 @@
 import unittest
 from json_handler_integration import update_json, read_json, delete_json
 import json
+import os
 
 class TestFileOperations(unittest.TestCase):
  
@@ -18,6 +19,11 @@ class TestFileOperations(unittest.TestCase):
         # Write the data to the file
         with open(self.test_file, "w") as file:
             json.dump(initial_data, file, indent=4)
+
+    def tearDown(self):
+        # Remove the test file after each test
+        if os.path.exists(self.test_file):
+            os.remove(self.test_file)
     
 
     def test_append(self):

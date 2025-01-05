@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from json_handler import update_json, read_json, delete_json
+from json_handler_integration import update_json, read_json, delete_json
 
 app = Flask(__name__)
 
@@ -17,23 +17,25 @@ def task(task_id):
         data = request.json
         if not data or "description" not in data:
             return jsonify({"message":"Missing 'description' key in request body"}), 400
-        if task_id in tasks:
-            return jsonify({"message":"Task already exists"}), 400
-        tasks[task_id] = request.json.get("description", "")
-        return jsonify({task_id: tasks[task_id]}), 201
+        else:
+            response = update_json({task_id: request.json.get("description", "")}, False)
+            if response is False:
+                return jsonify({"message":"Task already exists"}), 400
+            else:
+                return jsonify({task_id: tasks[task_id]}), 201
 
     if request.method == 'PUT':
-        if task_id not in tasks:
-            return jsonify({"message":"Task not found"}), 404
-        
         data = request.json
         if not data or "description" not in data:
             return jsonify({"message":"Missing 'description' key in request body"}), 400
-        
-        tasks[task_id] = request.json.get("description", "")
-        return jsonify({"message":"Task updated successfully",
-                        "task_id": task_id,
-                        "description": tasks[task_id]}), 200
+        else:
+            response = update_json({task_id: request.json.get("description", "")}, True)
+            if response is False:
+                return jsonify({"message":"Task not found"}), 404
+            else:
+                return jsonify({"message":"Task updated successfully",
+                                "task_id": task_id,
+                                "description": request.json.get("description", "")}), 200
     
     if request.method == 'DELETE':
         if task_id in tasks:

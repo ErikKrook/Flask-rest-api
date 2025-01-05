@@ -8,15 +8,13 @@ def update_json(new_data, update: bool, filename='tasks.json'):
         file_data = json.load(outfile)
 
         # Check if the file can be updated or appended to
-        if update == True:
+        if update is True:
             for key in new_data:
                 if key not in file_data:
-                    #print(f"Error key {key} not in use")
                     return False
-        elif update == False:
+        elif update is False:
             for key in new_data:
                 if key in file_data:
-                    #print(f"Error key {key} already in use")
                     return False
 
         # Append the new data
