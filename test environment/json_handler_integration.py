@@ -1,7 +1,7 @@
 import json
 
 # Function to append or update data to a JSON file
-def update_json(new_data, update: bool, filename='tasks.json'):
+def update_json(new_data, update: bool, filename='test_tasks.json'):
     with open(filename, "r+") as outfile:
 
         # Load existing data
@@ -30,21 +30,21 @@ def update_json(new_data, update: bool, filename='tasks.json'):
 
     return True
 
-def write_json(new_data, filename="tasks.json"):
+def write_json(new_data, filename="test_tasks.json"):
     #Over write existing file with new data
     with open(filename, 'w') as outfile:
         json.dump(new_data, outfile)
 
     return True
 
-def read_json(key, filename="tasks.json"):
+def read_json(key, filename="test_tasks.json"):
     #Read the value of a specifi key
     with open(filename, "r") as outfile:
         file = json.load(outfile)
 
         return file.get(key, None)
     
-def delete_json(key, filename="tasks.json"):
+def delete_json(key, filename="test_tasks.json"):
     #Delete on row
     with open(filename, "r+") as outfile:
         file = json.load(outfile)
