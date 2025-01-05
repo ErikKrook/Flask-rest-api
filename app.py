@@ -1,16 +1,17 @@
 from flask import Flask, request, jsonify
+from json_handler import update_json, read_json, delete_json
 
 app = Flask(__name__)
 
-# In-memory data store
 tasks = {}
 
 @app.route('/task/<string:task_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def task(task_id):
     if request.method == 'GET':
-        if task_id in tasks:
-            return jsonify({task_id: tasks[task_id]}), 200
-        return jsonify({"message": "Task not found"}), 404
+        response = read_json(task_id)
+        if response is None:
+            return jsonify({"message": "Task not found"}), 404
+        return jsonify(response), 200
     
     if request.method == 'POST':
         data = request.json

@@ -15,8 +15,13 @@ deactivate # for deactivation
 pip install flask flask-restful
 ```
 
+# Test
+
+In the test folder is where I keep my unittest and test data
+
 # How to run Unittest
 
 ```bash
 python -m unittest test_app.py
 ```
+

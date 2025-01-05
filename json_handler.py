@@ -1,7 +1,7 @@
 import json
 
 # Function to append or update data to a JSON file
-def update_json(new_data, update, filename='tasks.json'):
+def update_json(new_data, update: bool, filename='tasks.json'):
     with open(filename, "r+") as outfile:
 
         # Load existing data
