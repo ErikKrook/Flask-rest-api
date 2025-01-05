@@ -38,7 +38,7 @@ class TestFlaskApp(unittest.TestCase):
     def test_get_task(self):
         response = self.app.get('/task/2')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json, {"2":"Task2"})
+        self.assertEqual(response.json, "Task2")
 
     def test_post_task(self):
         response = self.app.post('/task/3', json={"description":"Task3"})

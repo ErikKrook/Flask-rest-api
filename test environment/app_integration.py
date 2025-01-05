@@ -22,7 +22,7 @@ def task(task_id):
             if response is False:
                 return jsonify({"message":"Task already exists"}), 400
             else:
-                return jsonify({task_id: tasks[task_id]}), 201
+                return jsonify({task_id: request.json.get("description", "")}), 201
 
     if request.method == 'PUT':
         data = request.json
@@ -38,10 +38,11 @@ def task(task_id):
                                 "description": request.json.get("description", "")}), 200
     
     if request.method == 'DELETE':
-        if task_id in tasks:
-            del tasks[task_id]
+        response = delete_json(task_id)
+        if response is False:
+            return jsonify({"message":"Task not found"}), 404
+        else:
             return jsonify({"message":"Task deleted succesfully"}), 200
-        return jsonify({"message":"Task not found"}), 404
         
         
 
